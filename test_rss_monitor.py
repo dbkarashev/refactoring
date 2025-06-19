@@ -14,7 +14,6 @@ from rss_monitor import RSSMonitor, app
 class TestExceptionHandling(unittest.TestCase):
     """
     Тесты для Issue #2: Отсутствие обработки исключений
-    Используемые приемы тестирования из "Совершенный код" гл. 22.3:
     """
     
     def setUp(self):
@@ -86,7 +85,7 @@ class TestExceptionHandling(unittest.TestCase):
         """
         mock_parse.side_effect = Exception("Network timeout")
         
-        # Тест не должен падать, а логировать ошибку
+        # Тестируем поведение при сетевых ошибках
         try:
             self.monitor.parse_feed("Test Feed", "http://invalid.url", ["test"])
         except Exception as e:
